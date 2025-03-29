@@ -21,8 +21,6 @@ Adding up ...
 openai-sdk-agents/
 ├── my_agents/         # Agent implementations
 ├── tools/             # Custom tools for agents
-├── tests/             # Test cases
-├── main.py            # Main entry point
 ```
 
 ## Requirements
