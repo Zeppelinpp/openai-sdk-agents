@@ -9,4 +9,6 @@ dependencies = [
     "openai>=1.69.0",
     "openai-agents>=0.0.7",
     "serpapi>=0.1.5",
+    "selectolax>=0.3.17",
+    "requests>=2.31.0",
 ]
