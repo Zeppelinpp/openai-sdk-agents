@@ -12,7 +12,7 @@ set_tracing_disabled(disabled=True)
 
 def main():
     web_agent = WebAgent(ds_client)
-    result = Runner.run_sync(web_agent, "Detailed information of CNN news today")
+    result = Runner.run_sync(web_agent, "Photos of Lisa Ann")
     result = result.final_output
     print(f"Model > {result}")
 
