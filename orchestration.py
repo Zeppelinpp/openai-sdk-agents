@@ -1,5 +1,12 @@
 import asyncio, os
-from agents import AsyncOpenAI, Runner, trace, MessageOutputItem, ItemHelpers, set_default_openai_client, set_tracing_disabled
+from agents import (
+    AsyncOpenAI,
+    Runner,
+    MessageOutputItem,
+    ItemHelpers,
+    set_default_openai_client,
+    set_tracing_disabled,
+)
 from tools.web_search import web_reader
 from my_agents.web_agent import WebAgent
 from my_agents.router_agent import RouterAgent
@@ -19,16 +26,18 @@ web_agent = WebAgent(openai_client=openai_client).as_tool(
 
 router_agent = RouterAgent(openai_client=openai_client, tools=[web_agent, web_reader])
 
+
 async def main(msg):
     hooks = CustomAgentHooks(display_name="Orchestration")
     result = await Runner.run(router_agent, msg, hooks=hooks)
-        
+
     for item in result.new_items:
         if isinstance(item, MessageOutputItem):
             text = ItemHelpers.text_message_output(item)
             if text:
                 print(f"Running step: {text}")
     print(f"Final answer: {result.final_output}")
+
 
 if __name__ == "__main__":
     asyncio.run(main("Who are Ava Addams and what is JOI in nsfw context?"))

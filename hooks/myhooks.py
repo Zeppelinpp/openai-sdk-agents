@@ -1,6 +1,7 @@
 from agents import Agent, AgentHooks, RunContextWrapper, Tool
 from typing import Any
 
+
 class CustomAgentHooks(AgentHooks):
     def __init__(self, display_name: str):
         self.event_counter = 0
@@ -8,21 +9,29 @@ class CustomAgentHooks(AgentHooks):
 
     async def on_agent_start(self, context: RunContextWrapper, agent: Agent) -> None:
         self.event_counter += 1
-        print(f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} started")
+        print(
+            f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} started"
+        )
 
-    async def on_agent_end(self, context: RunContextWrapper, agent: Agent, output: Any) -> None:
+    async def on_agent_end(
+        self, context: RunContextWrapper, agent: Agent, output: Any
+    ) -> None:
         self.event_counter += 1
         print(
             f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} ended with output {output}"
         )
 
-    async def on_handoff(self, context: RunContextWrapper, agent: Agent, source: Agent) -> None:
+    async def on_handoff(
+        self, context: RunContextWrapper, agent: Agent, source: Agent
+    ) -> None:
         self.event_counter += 1
         print(
             f"### ({self.display_name}) {self.event_counter}: Agent {source.name} handed off to {agent.name}"
         )
 
-    async def on_tool_start(self, context: RunContextWrapper, agent: Agent, tool: Tool) -> None:
+    async def on_tool_start(
+        self, context: RunContextWrapper, agent: Agent, tool: Tool
+    ) -> None:
         self.event_counter += 1
         print(
             f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} started tool {tool.name}"
