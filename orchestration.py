@@ -40,4 +40,4 @@ async def main(msg):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Who are Ava Addams and what is JOI in nsfw context?"))
+    asyncio.run(main("I want detailed news of CNN and fox today. Give me link to checkout further information."))
